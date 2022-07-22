@@ -1,10 +1,15 @@
-package com.example.lexico;
+package com.example.lexico.Controller;
 
+import com.example.lexico.Model.Caso;
+import com.example.lexico.Model.Participante;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.net.URL;
@@ -12,12 +17,17 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Controller implements Initializable {
 
-
+    @FXML
+    Button btnVisualizar;
+    @FXML
+    TextArea procesoSemantico;
     @FXML
     Button btnAnalizar;
     @FXML
@@ -32,12 +42,17 @@ public class Controller implements Initializable {
     String[][] tabla = new String[19][13];
     String[] terminales;
     Sheet sheet;
+    ArrayList<Caso> casosCompletos = new ArrayList<>();
+    HashMap<String,Participante> pa = new HashMap<>();
+    String titulo = "";
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         token();
         gramar();
+
     }
 
     @FXML
@@ -45,6 +60,10 @@ public class Controller implements Initializable {
     {
         procesoLexico.clear();
         procesoSintactico.clear();
+        procesoSemantico.clear();
+        this.btnVisualizar.setDisable(true);
+        this.pa.clear();
+        this.casosCompletos.clear();
         boolean encontrado = false;
         String texto = entrada.getText();
 
@@ -73,7 +92,7 @@ public class Controller implements Initializable {
         }
 
         leer();
-        sintactico(newText);
+        sintactico(newText, texto);
 
 
 
@@ -125,7 +144,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void sintactico(String[] texto)
+    public void sintactico(String[] texto, String t)
     {
         boolean error = false;
         Stack<String> pila = new Stack<>();
@@ -201,7 +220,6 @@ public class Controller implements Initializable {
                     {
                         String[] newText = ver.split("\\s+");
                         pila.pop();
-
                         for(int i=newText.length-1; i>=0; i--)
                         {
                             if(!newText[i].equals("ε"))
@@ -226,7 +244,162 @@ public class Controller implements Initializable {
         if(!error)
         {
             this.procesoSintactico.appendText("Codigo sin errores sintacticos");
+            this.semantica(t);
         }
+
+
+    }
+    public void semantica(String t)
+    {
+        ArrayList<String> id;
+        ArrayList<String> name;
+        ArrayList<String> caso;
+        ArrayList<ArrayList<String>> casoPart = new ArrayList<>();
+        boolean seguir, seguirN, seguirC = true;
+
+        String[] tit = t.split("([:])");
+        String[] titul = tit[1].split("([(])");
+        this.titulo = titul[0];
+
+        String[] separar = t.split("Participantes");
+        separar = separar[1].split("Casos");
+        String[] user = separar[0].split("\\s+");
+        String[] casos = separar[1].split(tokens.get("IDENTIFICADOR"));
+
+        id = this.dividir(tokens.get("DIGITO"), user);
+        name = this.dividir(tokens.get("IDENTIFICADOR"), user);
+        caso = this.dividir(tokens.get("IDENTIFICADOR"), separar[1].split("\\s+"));
+
+        for(String s: casos) {
+
+            casoPart.add(this.dividir(tokens.get("DIGITO"), s.split("\\s+")));
+        }
+
+        casoPart.remove(0);
+        seguir = this.verR(id, "ID", "Paticipantes");
+        seguirN = this.verR(name, "Nombre", "Paticipantes");
+        seguirC = this.verR(caso, "Nombre", "Caso");
+
+        boolean seguirId = true;
+
+        for(ArrayList<String> c: casoPart)
+        {
+            boolean s1 = this.verR(c, "ID", "Casos");
+            boolean s2 = this.verR(c,id);
+            if(!s1 || !s2)
+            {
+                seguirId = false;
+            }
+
+
+        }
+
+
+
+            if(seguir && seguirN && seguirC && seguirId)
+            {
+
+                this.procesoSemantico.appendText("Codigo sin errores semanticos");
+                this.casosCompletos = this.datosF(id, name, caso, casoPart);
+                this.btnVisualizar.setDisable(false);
+
+            }
+
+
+
+
+
+    }
+
+    public  ArrayList<Caso> datosF(ArrayList<String> id, ArrayList<String> name, ArrayList<String> caso,  ArrayList<ArrayList<String>> casoPart)
+    {
+//        HashMap<String,Participante> pa = new HashMap<>();
+        ArrayList<Caso> casCompletos = new ArrayList<>();
+
+        for(int i = 0; i< id.size(); i++) {
+            Participante p = new Participante(id.get(i), name.get(i));
+            this.pa.put(id.get(i), p);
+        }
+
+        for(int i = 0; i< caso.size(); i++) {
+
+            ArrayList<Participante> cas = new ArrayList<>();
+            ArrayList<String> buscar = casoPart.get(i);
+
+            for (String s : buscar) {
+                Participante b = this.pa.get(s);
+                cas.add(b);
+            }
+            Caso c = new Caso(caso.get(i), cas);
+            c.setPar(cas);
+            casCompletos.add(c);
+        }
+
+        return casCompletos;
+
+    }
+
+    public boolean verR(ArrayList<String> lista, String dato, String quien)
+    {
+        boolean seguir = true;
+        ArrayList<String> num = new ArrayList<>(lista);
+
+        HashSet<String> hs = new HashSet<>(num);
+        num.clear();
+        num.addAll(hs);
+
+        for(String s: num){
+
+            if(Collections.frequency(lista,s) > 1)
+            {
+                System.out.println();
+                this.procesoSemantico.appendText(s+" ----> de "+quien+" ya ah sido definido\n\n");
+                seguir = false;
+            }
+
+        }
+
+        return seguir;
+    }
+
+
+    public boolean verR(ArrayList<String> lista, ArrayList<String> id)
+    {
+        boolean seguir = true;
+        HashSet<String> hs = new HashSet<>(lista);
+        HashSet<String> hs2 = new HashSet<>(id);
+        lista.clear();
+        lista.addAll(hs);
+        id.clear();
+        id.addAll(hs2);
+
+        for(String s: lista){
+
+
+            if(Collections.frequency(id,s) == 0)
+            {
+                System.out.println();
+                this.procesoSemantico.appendText("ID ----> "+s+" : no ha sido declarado\n\n");
+                seguir = false;
+            }
+
+        }
+        return seguir;
+    }
+
+    public ArrayList<String> dividir(String rx , String[] sep )
+    {
+        ArrayList<String> lista = new ArrayList<>();
+
+        for (String s : sep) {
+            Pattern patternName = Pattern.compile(rx);
+            Matcher c = patternName.matcher(s);
+            if (c.matches()) {
+                lista.add(s);
+            }
+
+        }
+        return lista;
     }
 
     public void token()
@@ -264,5 +437,23 @@ public class Controller implements Initializable {
         gramatica.put("CASOS", terminales = new String[]{"Casos"});
     }
 
+    @FXML
+    public void visualizar(ActionEvent actionEvent)
+    {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/com/example/lexico/diagrama.fxml"));
+            Parent root = loader.load();
+            Diagrama controlador = loader.getController();
+            controlador.datos(this.casosCompletos, this.pa, this.titulo);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

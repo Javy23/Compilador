@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lexico.Controller.Diagrama">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="850.0" layoutX="350.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+      <Label layoutX="338.0" layoutY="14.0" prefHeight="41.0" prefWidth="425.0" text="Diagrama de casos de uso">
+         <font>
+            <Font name="Arial" size="35.0" />
+         </font>
+      </Label>
+      <Ellipse fx:id="caso8" fill="DODGERBLUE" layoutX="623.0" layoutY="195.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso9" fill="DODGERBLUE" layoutX="623.0" layoutY="874.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso1" fill="DODGERBLUE" layoutX="623.0" layoutY="522.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso6" fill="DODGERBLUE" layoutX="473.0" layoutY="275.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso4" fill="DODGERBLUE" layoutX="623.0" layoutY="355.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso2" fill="DODGERBLUE" layoutX="473.0" layoutY="435.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso5" fill="DODGERBLUE" layoutX="623.0" layoutY="714.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso3" fill="DODGERBLUE" layoutX="473.0" layoutY="616.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Ellipse fx:id="caso7" fill="DODGERBLUE" layoutX="473.0" layoutY="794.0" radiusX="100.0" radiusY="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <ImageView fx:id="p7" fitHeight="160.0" fitWidth="150.0" layoutX="180.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p3" fitHeight="160.0" fitWidth="150.0" layoutX="21.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p1" fitHeight="160.0" fitWidth="150.0" layoutX="180.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p5" fitHeight="160.0" fitWidth="150.0" layoutX="21.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p9" fitHeight="160.0" fitWidth="150.0" layoutX="180.0" layoutY="724.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p6" fitHeight="160.0" fitWidth="150.0" layoutX="773.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p8" fitHeight="160.0" fitWidth="150.0" layoutX="923.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p2" fitHeight="160.0" fitWidth="150.0" layoutX="773.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p4" fitHeight="160.0" fitWidth="150.0" layoutX="923.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../user.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label1" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="550.0" layoutY="494.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label5" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="683.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label2" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="409.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label3" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="592.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label4" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="328.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label6" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="245.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label7" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="766.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label8" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="168.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label9" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="550.0" layoutY="845.0" prefHeight="67.0" prefWidth="143.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="n1" alignment="CENTER" layoutX="155.0" layoutY="538.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n2" alignment="CENTER" layoutX="757.0" layoutY="613.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n3" alignment="CENTER" layoutX="5.0" layoutY="395.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n4" alignment="CENTER" layoutX="907.0" layoutY="443.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n5" alignment="CENTER" layoutX="5.0" layoutY="700.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n6" alignment="CENTER" layoutX="757.0" layoutY="258.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n7" alignment="CENTER" layoutX="155.0" layoutY="218.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n8" alignment="CENTER" layoutX="907.0" layoutY="816.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="n9" alignment="CENTER" layoutX="155.0" layoutY="860.0" prefHeight="41.0" prefWidth="183.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="titulo" alignment="CENTER" layoutX="369.0" layoutY="80.0" prefHeight="41.0" prefWidth="366.0" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

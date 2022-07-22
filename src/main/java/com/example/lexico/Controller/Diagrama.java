@@ -196,7 +196,8 @@ public class Diagrama implements Initializable {
         for (Map.Entry<String, Participante> entry : this.part.entrySet())
         {
           this.monos.get(j).setVisible(true);
-          this.monosN.get(j).setText(entry.getValue().getId()+ ": "+entry.getValue().getNombre());
+          this.monosN.get(j).setText(entry.getKey()+ ": "+entry.getValue().getNombre());
+            System.out.println(entry.getValue().getId());
           j++;
         }
 

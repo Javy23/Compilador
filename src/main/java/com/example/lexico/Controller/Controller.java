@@ -46,7 +46,6 @@ public class Controller implements Initializable {
     HashMap<String,Participante> pa = new HashMap<>();
     String titulo = "";
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -275,6 +274,14 @@ public class Controller implements Initializable {
             casoPart.add(this.dividir(tokens.get("DIGITO"), s.split("\\s+")));
         }
 
+        String [] id2 = new String[id.size()];
+
+        for(int i = 0; i<id.size(); i++)
+        {
+            id2[i] = id.get(i);
+        }
+
+
         casoPart.remove(0);
         seguir = this.verR(id, "ID", "Paticipantes");
         seguirN = this.verR(name, "Nombre", "Paticipantes");
@@ -298,9 +305,8 @@ public class Controller implements Initializable {
 
             if(seguir && seguirN && seguirC && seguirId)
             {
-
                 this.procesoSemantico.appendText("Codigo sin errores semanticos");
-                this.casosCompletos = this.datosF(id, name, caso, casoPart);
+                this.casosCompletos = this.datosF(id2, name, caso, casoPart);
                 this.btnVisualizar.setDisable(false);
 
             }
@@ -311,14 +317,14 @@ public class Controller implements Initializable {
 
     }
 
-    public  ArrayList<Caso> datosF(ArrayList<String> id, ArrayList<String> name, ArrayList<String> caso,  ArrayList<ArrayList<String>> casoPart)
+    public  ArrayList<Caso> datosF(String[] id, ArrayList<String> name, ArrayList<String> caso,  ArrayList<ArrayList<String>> casoPart)
     {
 //        HashMap<String,Participante> pa = new HashMap<>();
         ArrayList<Caso> casCompletos = new ArrayList<>();
 
-        for(int i = 0; i< id.size(); i++) {
-            Participante p = new Participante(id.get(i), name.get(i));
-            this.pa.put(id.get(i), p);
+        for(int i = 0; i< id.length; i++) {
+            Participante p = new Participante(id[i], name.get(i));
+            this.pa.put(id[i], p);
         }
 
         for(int i = 0; i< caso.size(); i++) {
@@ -396,6 +402,7 @@ public class Controller implements Initializable {
             Matcher c = patternName.matcher(s);
             if (c.matches()) {
                 lista.add(s);
+
             }
 
         }
